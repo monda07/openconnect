@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# set -x
+[ -f /usr/bin/openvpn -a -x /usr/bin/openvpn ] || (echo "Failure: injected startup script not defined properly";exit 1)
+
+while true
+do
+    sleep 86400
+done
