@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# set -x
-
-echo "Default openvpn script - no action taken"
-echo "Use the -v docker run option to inject your own vpn initiation shell script"

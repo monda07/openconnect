@@ -1,0 +1,8 @@
+#!/bin/sh
+# This is really just a sample script to demonstrate how to use the openconnect container to ssh to a remote host
+
+# if the caller passes in a user@ then don't modify it, otherwise
+# default to $USER since we are doing a proxy through root in the container
+TARGET=${2:?Error: missing ssh target}
+[[ "$2" =~ .*@.* ]] || TARGET=$USER@$2
+docker exec -ti openconnect_$1 ssh $TARGET
