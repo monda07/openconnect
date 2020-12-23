@@ -6,7 +6,7 @@ SCRIPT=$(which $1)
 docker run --tty --interactive --privileged --rm \
     --volume $SCRIPT:/usr/bin/openvpn \
     --volume $HOME/.ssh:/root/.ssh \
-    --port 80:80 \
-    --port 443:443 \
+    --publish 80:80 \
+    --publish 443:443 \
     --name openconnect_$1 \
     openconnect

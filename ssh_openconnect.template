@@ -1,8 +1,14 @@
 #!/bin/sh
 # This is really just a sample script to demonstrate how to use the openconnect container to ssh to a remote host
 
-# if the caller passes in a user@ then don't modify it, otherwise
+# First argument is the vpn script name.  It is the same used to launch the container.
+# Second argument is the ssh target. If the caller passes in a user@ then don't modify it, otherwise
 # default to $USER since we are doing a proxy through root in the container
+# Any remaining arguments are just passed to ssh. This results in a bit weird command line syntax
+# as the order of ssh target and ssh arguments are reversed from normal
+
+VPN=$1
 TARGET=${2:?Error: missing ssh target}
 [[ "$2" =~ .*@.* ]] || TARGET=$USER@$2
-docker exec -ti openconnect_$1 ssh $TARGET
+shift;shift
+docker exec -ti openconnect_$VPN ssh $* $TARGET
